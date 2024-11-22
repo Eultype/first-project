@@ -215,6 +215,14 @@ Pour retourner sur la main
 
 	git switch main
 	
-Pour supprimer une branche
+Pour envoyer une branche en ligne
+
+	git push origin nomDeLaBranche
+	
+Pour supprimer une branche en local
 	
 	git branch -d nomDeLaBranche
+	
+Pour supprimer une branche sur github, passez par github (mauvaise pratique)
+
+	
