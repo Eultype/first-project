@@ -135,4 +135,86 @@ git fetch
 git pull 
 ```
 
+### Retour sur un commit
 
+####On peut revenir sur un ancien commit, sans perdre les changements actuels fichiers
+
+```bash
+# on avait envoyé 4 commits en ligne
+git push
+
+#retourne sur un ancien commit 
+# ! disparition des commit qui suivent
+git reset 0901dac84 
+
+# On back 3 commits
+# sans modifier les fichiers physiques
+# en creant un nouveau commit
+git add .
+git commit -m"-3 commit + save files"
+```
+
+Si on effectue un `git push`on aura une erreur car il y a une incompatibilité de la chaine de commit, une bifurcation. 
+
+**seule posibilitée** : forcer le push :
+
+	git push --force origin main
+	
+####On peut revenir sur un ancien commit en remettant les fichiers à l'état de ce commit
+
+```bash
+# création d'un fichier
+echo "blabla" > f.txt
+git add .
+git commit -m"f.txt"
+git push
+
+# création d'un deuxième fichier
+echo "blabla2" > f2.txt
+git add .
+git commit -m"f2.txt"
+git push
+
+#retourne sur un ancien commit 
+# ! disparition des commit qui suivent
+# = disparition fichiers ou modifications de ceux-ci
+git reset --hard 0901dac84 
+
+# On back 3 commits
+# sans modifier les fichiers physiques
+# en creant un nouveau commit
+git add .
+git commit -m"-3 commit + save files"
+```
+
+Si on effectue un `git push`on aura une erreur car il y a une incompatibilité de la chaine de commit, une bifurcation. 
+
+**seule posibilitée** : forcer le push :
+
+	git push --force origin main	
+	
+## Bonnes pratiques
+
+### Utilisation des branches
+
+Pour voir les branches : 
+
+	git branch
+
+Par défaut nous avons que `main`
+
+Pour créer un branche (à partir de la branche actuelle active)
+
+	git branch nomDeLaBranche
+	
+Pour accéder à la branche
+
+	git switch nomDeLaBranche
+	
+Pour retourner sur la main
+
+	git switch main
+	
+Pour supprimer une branche
+	
+	git branch -d nomDeLaBranche
